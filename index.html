@@ -2,26 +2,35 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Demo for paper: Adversarial Robustness of Mel based speaker recognition systems</title>
+<title>Demo for paper: ParrotTTS: Text-to-speech synthesis by exploiting self-supervised representations</title>
 </head>
 <body>
-<h1 id="Demo for paper" style="font-size:50px"><center> Adversarial Robustness of Mel based speaker recognition systems </center></h1>
+<h1 id="Demo for paper" style="font-size:50px"><center> ParrotTTS: Text-to-speech synthesis by exploiting self-supervised representations </center></h1>
 <h2 id="abstract">Abstract:</h2>
-<div style="text-align: justify;font-size: 20px">Convolutional neural networks (CNN) applied to Mel spec-trograms began to dominate the landscape of speaker recognition systems. Correspondingly, it is also important to evaluate their robustness to adversarial attacks that remains unexplored for  end-to-end  trained  CNNs  for  speaker  recognition. Our work addresses this gap and investigates variations of the iterative Fast Gradient Sign Method (FGSM) to generate adversarial attacks.  We observe that a vanilla iterative FGSM can flip the identity of each speaker sample to every other speaker in the LibriSpeech dataset.  Surprisingly, the effort required to flip the identity is uncorrelated with the distance between the original and target speaker embeddings. Furthermore, we propose adversarial attacks specific to Mel spectrogram features by (a) limiting the number of pixels attacked, (b) restricting changes to specific frequency bands,  and (c) restricting changes to particular time duration.  Using thorough qualitative and quantitative results, we demonstrate the fragility and non-intuitive nature of the current CNN-based speaker recognition systems, where the predicted speaker identities can be flipped without any perceptible changes in the audio.</div>
+<div style="text-align: justify;font-size: 20px">Text-to-speech (TTS) systems are modelled as mel-syntheizers followed by speech-vocoders since the era of statistical TTS that carried forward into neural designs.
+We propose an alternative approach to TTS modelling referred to as ParrotTTS borrowing from self-supervised learning (SSL) methods. 
+ParrotTTS takes a two-step approach by initially training a speech-to-speech model on unlabelled data that is abundantly available similar to Wav2vec2, and HuBERT.
+This is followed by a text-to-embedding model that leverages speech with aligned transcriptions to extend it to TTS.
+ParrotTTS achieves competitive mean opinion scores on naturalness compared to traditional TTS models but significantly improves over the latter's data efficiency of transcribed pairs required for voice cloning.
+This further paves the path to training TTS models on generically trained SSL speech models.</div>
 </div>
 <p><br /></p>
-<h4 style="font-size:20px">1. Adversarial attack on speaker recognition system </h4>
-<center><p><img src="vgg.jpg" alt="arch" /></p> </center>
-<h4 style="font-size:20px">2. Demo of Vanilla FGSM, top-k and top-2k attacks: </h4>
+<h4 style="font-size:20px">1. Proposed ParrotTTS </h4>
+<center><p><img src="demo/tts_tth.jpg" alt="arch" /></p> </center>
+<h4 style="font-size:20px">2. Demo of Single speaker TTS </h4>
 <blockquote>
 <table border=1>
-<div style="text-align: justify;font-size: 20px">A sample of particular speaker is attacked to the given target speaker with different attacks.</div>
+<div style="text-align: justify;font-size: 20px">A single speaker TTS trained on LJSpeech dataset.</div>
 <tr>
-<td align="center"><span>Original audio</span></td>
-<td align="center"><span>Target speaker</span></td>
-<td align="center"><span>Vanilla FGSM</span></td>
-<td align="center"><span>Top-k<span></td>
-<td align="center"><span>Top-2k<span></td>
+<td align="center"><span>Text</span></td>
+<td align="center"><span>Tacotron2</span></td>
+<td align="center"><span>FastSpeech2</span></td>
+<td align="center"><span>FastSpeech2 (Supervised ASR)<span></td>
+<td align="center"><span>Unsupervised TTS<span></td>
+<td align="center"><span>ParrotTTS: AR-TTE<span></td>
+<td align="center"><span>ParrotTTS: NAR-TTE<span></td>
+<td align="center"><span>ParrotTTS: NAR-TTE (Half transcripts)<span></td>
+
 </tr>
 <tr>
 <td><audio controls><source src="demo/fgsm/in_7460_92002_000047_000003.npy_ref.wav"></audio></td>
@@ -57,16 +66,18 @@
 </table>
 <br/>
 </blockquote>
-<h4 style="font-size:20px">3. Demo of attacking different time bands. </h4>
+<h4 style="font-size:20px">3. Demo of Multi-speaker TTS </h4>
 <blockquote>
 <table border=1>
-<div style="text-align: justify;font-size: 20px"> A sample of a speaker is attacked only the particular time frames to the given target speaker.  </div>
+<div style="text-align: justify;font-size: 20px"> The samples are generated from various models of Multi-speaker TTS on VCTK speakers.  </div>
 <tr>
-<td align="center"><span>Position</span></td>
-<td align="center"><span>Original audio</span></td>
-<td align="center"><span>Target speaker<span></td>
-<td align="center"><span>t=2</span></td>
-<td align="center"><span>t=30<span></td>
+<td align="center"><span>Text</span></td>
+
+<td align="center"><span>GT+Vocoder</span></td>
+<td align="center"><span>FastSpeech2</span></td>
+<td align="center"><span>FastSpeech2 (Supervised ASR)<span></td>
+<td align="center"><span>FastSpeech2 (LJSpeech) + Voice Cloning</span></td>
+<td align="center"><span>ParrotTTS: NAR-TTE<span></td>
 </tr>
 <tr>
 <td>Start</td>
@@ -112,38 +123,7 @@
 </table>
 <br/>
 </blockquote>
-<h4 style="font-size:20px">4. Demo of attacking frequency band: </h4>
-<blockquote>
-<table border=1>
-<div style="text-align: justify;font-size: 20px">A sample of particular speaker is attacked only on certain frequency bands to the given target speaker.</div>
-<tr>
-<td align="center"><span>Original audio</span></td>
-<td align="center"><span>Target speaker</span></td>
-<td align="center"><span>Attacked</span></td>
-</tr>
-<tr>
-<td><audio controls><source src="demo/freq/in_7460_92002_000047_000003.npy_ref.wav"></audio></td>
-<td><audio controls><source src="demo/freq/in_5635_53458_000052_000001.npy_ref.wav"></audio></td>
-<td><audio controls><source src="demo/freq/7460_5635.wav"></audio></td>
-
-</tr>
-<tr>
-<td><audio controls><source src="demo/freq/in_7995_280250_000047_000001.npy_ref.wav"></audio></td>
-<td><audio controls><source src="demo/freq/in_70_121130_000007_000000.npy_ref.wav"></audio></td>
-<td><audio controls><source src="demo/freq/7995_70.wav"></audio></td>
-
-</tr>
-<tr>
-<td><audio controls><source src="demo/freq/in_5635_53458_000052_000001.npy_ref.wav"></audio></td>
-<td><audio controls><source src="demo/freq/in_192_128345_000093_000001.npy_ref.wav"></audio></td>
-<td><audio controls><source src="demo/freq/5635_192.wav"></audio></td>
-</tr>
-<tr>
-<td><audio controls><source src="demo/freq/in_70_121130_000007_000000.npy_ref.wav"></audio></td>
-<td><audio controls><source src="demo/freq/in_2499_156153_000007_000003.npy_ref.wav"></audio></td>
-<td><audio controls><source src="demo/freq/70_2499.wav"></audio></td>                                        
-</tr>
-</table>
+<
 <br/>
 </blockquote>
 
