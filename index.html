@@ -16,17 +16,19 @@ This further paves the path to training TTS models on generically trained SSL sp
 </div>
 <p><br /></p>
 <h4 style="font-size:20px">1. Proposed ParrotTTS </h4>
-<center><p><img src="demo/tts_tth.png" alt="arch" /></p> </center>
+<center><p><img src="demo/tts_tth.png" alt="arch" /></p> 
+	<td align="center"><span>(a) Traditional TTS and (b) ParrotTTS</span></td>
+</center>
 <h4 style="font-size:20px">2. Demo of Single speaker TTS </h4>
 <blockquote>
 <table border=1>
 <div style="text-align: justify;font-size: 20px">A single speaker TTS trained on LJSpeech dataset.</div>
 <tr>
 <td align="center"><span>Text</span></td>
-<td align="center"><span>Tacotron2</span></td>
-<td align="center"><span>FastSpeech2</span></td>
-<td align="center"><span>FastSpeech2 (Supervised ASR)<span></td>
-<td align="center"><span>Unsupervised TTS<span></td>
+<td align="center"><span>SS-Tacotron2</span></td>
+<td align="center"><span>SS-FastSpeech2</span></td>
+<td align="center"><span>SS-FastSpeech2-SupASR<span></td>
+<td align="center"><span>SS-Tacotron2-UnsupASR<span></td>
 <td align="center"><span>ParrotTTS: AR-TTE<span></td>
 <td align="center"><span>ParrotTTS: NAR-TTE<span></td>
 <td align="center"><span>ParrotTTS: NAR-TTE (Half transcripts)<span></td>
@@ -39,33 +41,50 @@ This further paves the path to training TTS models on generically trained SSL sp
 <td><audio controls><source src="demo/fgsm/vfgsm_7460_7995.wav"></audio></td>
 <td><audio controls><source src="demo/fgsm/topk_7460_7995.wav"></audio></td>
 <td><audio controls><source src="demo/fgsm/top2k_7460_7995.wav"></audio></td>
+<td><audio controls><source src="demo/fgsm/top2k_7460_7995.wav"></audio></td>
+<td><audio controls><source src="demo/fgsm/top2k_7460_7995.wav"></audio></td>
+
 
 </tr>
 <tr>
-<td>1</td>
+<td>2</td>
 <td><audio controls><source src="demo/fgsm/in_7460_92002_000047_000003.npy_ref.wav"></audio></td>
 <td><audio controls><source src="demo/fgsm/in_5635_53458_000052_000001.npy_ref.wav"></audio></td>
 <td><audio controls><source src="demo/fgsm/vfgsm_7460_5635.wav"></audio></td>
 <td><audio controls><source src="demo/fgsm/topk_7460_5635.wav"></audio></td>
 <td><audio controls><source src="demo/fgsm/top2k_7460_5635.wav"></audio></td>
-
+<td><audio controls><source src="demo/fgsm/top2k_7460_7995.wav"></audio></td>
+<td><audio controls><source src="demo/fgsm/top2k_7460_7995.wav"></audio></td>
 </tr>
 <tr>
-<td>1</td>
+<td>3</td>
 <td><audio controls><source src="demo/fgsm/in_192_128345_000093_000001.npy_ref.wav"></audio></td>
 <td><audio controls><source src="demo/fgsm/in_1212_14653_000036_000000.npy_ref.wav"></audio></td>
 <td><audio controls><source src="demo/fgsm/fgsm_192_1212.wav"></audio></td>
 <td><audio controls><source src="demo/fgsm/topk_192_1212.wav"></audio></td>
 <td><audio controls><source src="demo/fgsm/top2k_192_1212.wav"></audio></td>
-
+<td><audio controls><source src="demo/fgsm/top2k_7460_7995.wav"></audio></td>
+<td><audio controls><source src="demo/fgsm/top2k_7460_7995.wav"></audio></td>
 </tr>
 <tr>
-<td>1</td>
+<td>4</td>
 <td><audio controls><source src="demo/fgsm/in_192_128345_000093_000001.npy_ref.wav"></audio></td>
 <td><audio controls><source src="demo/fgsm/in_70_121130_000007_000000.npy_ref.wav"></audio></td>
 <td><audio controls><source src="demo/fgsm/vfgsm_192_70.wav"></audio></td>
 <td><audio controls><source src="demo/fgsm/topk_192_70.wav"></audio></td>
-<td><audio controls><source src="demo/fgsm/top2k_192_70.wav"></audio></td>                                               
+<td><audio controls><source src="demo/fgsm/top2k_192_70.wav"></audio></td>       
+<td><audio controls><source src="demo/fgsm/top2k_7460_7995.wav"></audio></td>
+<td><audio controls><source src="demo/fgsm/top2k_7460_7995.wav"></audio></td>                                        
+</tr>
+<tr>
+<td>5</td>
+<td><audio controls><source src="demo/fgsm/in_192_128345_000093_000001.npy_ref.wav"></audio></td>
+<td><audio controls><source src="demo/fgsm/in_70_121130_000007_000000.npy_ref.wav"></audio></td>
+<td><audio controls><source src="demo/fgsm/vfgsm_192_70.wav"></audio></td>
+<td><audio controls><source src="demo/fgsm/topk_192_70.wav"></audio></td>
+<td><audio controls><source src="demo/fgsm/top2k_192_70.wav"></audio></td>       
+<td><audio controls><source src="demo/fgsm/top2k_7460_7995.wav"></audio></td>
+<td><audio controls><source src="demo/fgsm/top2k_7460_7995.wav"></audio></td>                                        
 </tr>
 </table>
 <br/>
@@ -77,10 +96,10 @@ This further paves the path to training TTS models on generically trained SSL sp
 <tr>
 <td align="center"><span>Text</span></td>
 
-<td align="center"><span>GT+Vocoder</span></td>
-<td align="center"><span>FastSpeech2</span></td>
-<td align="center"><span>FastSpeech2 (Supervised ASR)<span></td>
-<td align="center"><span>FastSpeech2 (LJSpeech) + Voice Cloning</span></td>
+<td align="center"><span>GT-Mel+Vocoder</span></td>
+<td align="center"><span>MS-FastSpeech2</span></td>
+<td align="center"><span>MS-FastSpeech2-SupASR<span></td>
+<td align="center"><span>VC-FastSpeech2</span></td>
 <td align="center"><span>ParrotTTS: NAR-TTE<span></td>
 </tr>
 <tr>
@@ -89,6 +108,7 @@ This further paves the path to training TTS models on generically trained SSL sp
 <td><audio controls><source src="demo/time/in_192_128345_000093_000001.npy_ref.wav"></audio></td>
 <td><audio controls><source src="demo/time/F7460_192_2.wav"></audio></td>
 <td><audio controls><source src="demo/time/F7460_192_30.wav"></audio></td>
+<td><audio controls><source src="demo/time/F7460_192_30.wav"></audio></td>
 </tr>
 <tr>
 <td>2</td>
@@ -96,6 +116,7 @@ This further paves the path to training TTS models on generically trained SSL sp
 <td><audio controls><source src="demo/time/in_7460_92002_000047_000003.npy_ref.wav"></audio></td>
 <td><audio controls><source src="demo/time/F192_7460_2.wav"></audio></td>
 <td><audio controls><source src="demo/time/F192_7460_30.wav"></audio></td>
+<td><audio controls><source src="demo/time/F7460_192_30.wav"></audio></td>
 </tr>
 <tr>
 <td>3</td>
@@ -103,6 +124,7 @@ This further paves the path to training TTS models on generically trained SSL sp
 <td><audio controls><source src="demo/time/in_192_128345_000093_000001.npy_ref.wav"></audio></td>
 <td><audio controls><source src="demo/time/M7460_192_2.wav"></audio></td>
 <td><audio controls><source src="demo/time/M7460_192_30.wav"></audio></td>
+<td><audio controls><source src="demo/time/F7460_192_30.wav"></audio></td>
 </tr>
 <tr>
 <td>4</td>
@@ -110,12 +132,14 @@ This further paves the path to training TTS models on generically trained SSL sp
 <td><audio controls><source src="demo/time/in_7460_92002_000047_000003.npy_ref.wav"></audio></td>
 <td><audio controls><source src="demo/time/M192_7460_2.wav"></audio></td>
 <td><audio controls><source src="demo/time/M192_7460_30.wav"></audio></td>
+<td><audio controls><source src="demo/time/F7460_192_30.wav"></audio></td>
 </tr>
 <tr>
 <td>5</td>
 <td><audio controls><source src="demo/time/in_7460_92002_000047_000003.npy_ref.wav"></audio></td>
 <td><audio controls><source src="demo/time/in_192_128345_000093_000001.npy_ref.wav"></audio></td>
 <td><audio controls><source src="demo/time/E7460_192_2.wav"></audio></td>
+<td><audio controls><source src="demo/time/F7460_192_30.wav"></audio></td>
 <td><audio controls><source src="demo/time/E7460_192_30.wav"></audio></td>
 </tr>
 </table>
