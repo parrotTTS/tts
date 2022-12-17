@@ -7,11 +7,7 @@
 <body>
 <h1 id="Demo for paper" style="font-size:50px"><center> ParrotTTS: Text-to-speech synthesis by exploiting self-supervised representations </center></h1>
 <h2 id="abstract">Abstract:</h2>
-<div style="text-align: justify;font-size: 20px">Text-to-speech (TTS) systems are modelled as mel-syntheizers followed by speech-vocoders since the era of statistical TTS that carried forward into neural designs.
-We propose an alternative approach to TTS modelling referred to as ParrotTTS borrowing from self-supervised learning (SSL) methods. 
-ParrotTTS takes a two-step approach by initially training a speech-to-speech model on unlabelled data that is abundantly available similar to Wav2vec2, and HuBERT.
-This is followed by a text-to-embedding model that leverages speech with aligned transcriptions to extend it to TTS.
-ParrotTTS achieves competitive mean opinion scores on naturalness compared to traditional TTS models but significantly improves over the latter's data efficiency of transcribed pairs required for voice cloning.
+<div style="text-align: justify;font-size: 20px">Text-to-speech (TTS) systems are modelled as mel-synthesizers followed by speech-vocoders since the era of statistical TTS that is carried forward into neural designs. We propose an alternative approach to TTS modelling referred to as ParrotTTS borrowing from self-supervised learning (SSL) methods. ParrotTTS takes a two-step approach by initially training a speech-to-speech model on unlabelled data that is abundantly available, followed by a text-to-embedding model that leverages speech with aligned transcriptions to extend it to TTS. ParrotTTS achieves competitive mean opinion scores on naturalness compared to traditional TTS models but significantly improves over the latter's data efficiency of transcribed pairs and speaker adaptation without transcriptions.
 This further paves the path to training TTS models on generically trained SSL speech models.</div>
 </div>
 <p><br /></p>
